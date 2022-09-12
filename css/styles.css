@@ -1,0 +1,750 @@
+/*
+=============== 
+Fonts
+===============
+*/
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  /* dark shades of primary color*/
+  --clr-primary-1: hsl(303, 96%, 32%);
+  --clr-primary-2: hsl(303, 97%, 39%);
+  --clr-primary-3: hsl(303, 97%, 46%);
+  --clr-primary-4: hsl(303, 97%, 54%);
+  /* primary/main color */
+  --clr-primary-5: hsl(303, 97%, 61%);
+  /* lighter shades of primary color */
+  --clr-primary-6: hsl(303, 96%, 68%);
+  --clr-primary-7: hsl(303, 97%, 75%);
+  --clr-primary-8: hsl(303, 98%, 82%);
+  --clr-primary-9: hsl(303, 96%, 89%);
+  --clr-primary-10: hsl(303, 100%, 96%));
+  /* darkest grey - used for headings */
+  --clr-grey-1: hsl(209, 61%, 16%);
+  --clr-grey-2: hsl(211, 39%, 23%);
+  --clr-grey-3: hsl(209, 34%, 30%);
+  --clr-grey-4: hsl(209, 28%, 39%);
+  /* grey used for paragraphs */
+  --clr-grey-5: hsl(210, 22%, 49%);
+  --clr-grey-6: hsl(209, 23%, 60%);
+  --clr-grey-7: hsl(211, 27%, 70%);
+  --clr-grey-8: hsl(210, 31%, 80%);
+  --clr-grey-9: hsl(212, 33%, 89%);
+  --clr-grey-10: hsl(210, 36%, 96%);
+  --clr-white: #fff;
+  --ff-primary: "Lato", sans-serif;
+  --transition: all 0.3s linear;
+  --spacing: 0.25rem;
+  --radius: 0.5rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+/*
+=============== 
+Global Styles
+===============
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--ff-primary);
+  background: var(--clr-white);
+  color: var(--clr-grey-1);
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+/* img {
+  width: 100%;
+  display: block; 
+  bunu inaktive edip alttakini aktive ediyoruz
+} */
+img:not(.nav-logo) {
+  width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  margin-bottom: 1.25rem;
+  color: var(--clr-grey-5);
+}
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
+}
+/*  global classes */
+
+.btn {
+  text-transform: uppercase;
+  background: var(--clr-primary-5);
+  color: var(--clr-white);
+  padding: 0.375rem 0.75rem;
+  letter-spacing: var(--spacing);
+  display: inline-block;
+  /* font-weight: 700; */
+  transition: var(--transition);
+  font-size: 0.875rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.btn:hover {
+  color: var(--clr-primary-1);
+  background: var(--clr-primary-8);
+}
+
+/*
+=============== 
+Navbar
+===============
+*/
+/* ................................... */
+/* neden başlangıçta logo geniş ve yayılmış çünü global stylesta img ile ilgili width 100% ve diplay blockı böyle tanımladık  */
+/* bu işlemler daha çok small screen için */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: var(--dark-shadow);
+  z-index: 2;
+}
+.nav-icons {
+  display: none;
+}
+.nav-center {
+  width: 100%;
+  max-width: 1170px;
+  /* burayı diğer sectionlarla aynı widthte yapıyor */
+  margin: 0 auto;
+}
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.nav-toggle {
+  /* düğme yani */
+  background: transparent;
+  border: transparent;
+  font-size: 1.5rem;
+  color: var(--clr-primary-5);
+  cursor: var(--transition);
+  transition: var(--transition);
+}
+
+.nav-toggle:hover {
+  transform: scale(1.2);
+}
+
+.nav-link {
+  display: block;
+  padding: 1rem 2rem;
+  /* buradaki 2 rem  nav header daki ile aynı eşit olsun diye */
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  transition: var(--transition);
+  color: var(--clr-grey-1);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  color: var(--clr-primary-1);
+  background: var(--clr-primary-8);
+  /* padding normal padding 2 olduğu için sola gidiyormuş görüntüsünü yapabilmek için ondan büyük olmalı */
+  padding-left: 2.25rem;
+}
+
+/* button functionality  ayrıca görüntü için unordered list ul  çok önemli  bu yüzden ul links diye id koyduk  ayrıca dev toolsdan gidip yüksekliği buluyor 280px*/
+
+.nav-links {
+  height: 0;
+  overflow: hidden;
+  /* overflow hidden ile yazıların görünürlüğünü saklıyor */
+  transition: var(--transition);
+}
+
+.show-links {
+  height: 280px;
+}
+
+/* büyük ekrana geçiyor  */
+
+@media screen and (min-width: 992px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+  /* hide toogle buton */
+  .nav-toggle {
+    display: none;
+  }
+  .nav-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .nav-links {
+    height: auto;
+    display: flex;
+  }
+  .nav-header {
+    padding: 0 0;
+  }
+  .nav-link {
+    padding: 0 0;
+    margin-right: 0.7rem;
+  }
+
+  .nav-link:hover {
+    padding: 0;
+    color: var(--clr-primary-5);
+    background: transparent;
+  }
+  .nav-icons {
+    display: flex;
+  }
+  .nav-icon {
+    margin-right: 0.7rem;
+    color: var(--clr-primary-5);
+    font-size: 1.2rem;
+    transition: var(--transition);
+  }
+  .nav-icon:hover {
+    color: var(--clr-primary-9);
+  }
+}
+/*
+
+=============== 
+Hero
+===============
+*/
+.hero {
+  min-height: 100vh;
+  background: var(--clr-primary-5);
+  /* dikey ve yatay olarak banneri merkeze koymak için flexbox 3 line of code kullanacak şimdi  ve bu işlemi yapabilmek için  hero-banner divi içinde sarıyor hepsini çünkü  children target yapıyor parent kısmından.*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-banner {
+  text-align: center;
+  color: var(--clr-white);
+  padding: 0 3rem;
+}
+
+.hero-banner h1 {
+  text-transform: uppercase;
+}
+.hero-banner p {
+  max-width: 35rem;
+  /* max width ile yazıyının büyük ekranda genişçe yayılmasının önüne geçiyor bir yerde topluyor */
+  margin-left: auto;
+  margin-right: auto;
+  /* zaten global styles içinde to ve bottom margin var  */
+  color: var(--clr-white);
+  letter-spacing: var(--spacing);
+}
+.hero-btn {
+  padding: 0.9rem 1.6rem;
+  font-size: 1.25rem;
+  background: var(--clr-white);
+  color: var(--clr-primary-5);
+}
+
+.hero-btn:hover {
+  background: transparent;
+  color: var(--clr-white);
+  border-color: var(--clr-white);
+  /* buton şeffaf olunca border color lazım gözükmesi için
+ */
+  /* unutma global stylesda zaten bazı base btn özellikleri var  */
+}
+/* ekran büyüdükçe bazı özellikleir değiştiriyoruz şimdi büyük ekranda resim istiyor küçük ekranda mobilde falan gerek yok diyor resime */
+
+@media screen and (min-width: 768px) {
+  .hero {
+    background: linear-gradient(rgba(223, 53, 214, 0.7), rgba(0, 0, 0, 0.7)),
+      url("../images/main.jpg.jpg") center/cover no-repeat;
+  }
+  .hero-banner {
+    padding: 0;
+  }
+  .hero-banner p {
+    max-width: 45rem;
+    /* yani 768 pixelden sonrakiş ekranlarda yazı kalıbı max 45 olacak orada duracak */
+  }
+}
+/*
+=============== 
+About
+===============
+*/
+/* section add to globals */
+/* title add to globals */
+/* section center add to globals */
+/*  bu sectionun bazı özelliklerini bşka yerlerde kullanacağız o yüzden kısmen globals özelliği var ama buna rağmen globalsa yerleştirmedim burda tutuyorum k  */
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title h2 {
+  text-transform: uppercase;
+}
+
+.section-title span {
+  color: var(--clr-primary-5);
+}
+
+.section-center {
+  width: 90vw;
+  /* böylece resmi ortaladı  */
+  margin: 0 auto;
+  max-width: 1170px;
+}
+
+@media screen and (min-width: 992px) {
+  .section-center {
+    width: 95vw;
+  }
+}
+
+.about-img,
+.about-info {
+  margin-bottom: 2rem;
+}
+
+/* şimdi column layoutunu flexbox ile yapacak  */
+@media screen and (min-width: 992px) {
+  .about-center {
+    display: flex;
+    /* böylece resim ile yazı  yan yana gelebildi daha önce resim üstte yazı alttaydı */
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  /* children target  yapmış oldu  flex için mecbur */
+  .about-img,
+  .about-info {
+    flex: 0 0 calc(50% - 2rem);
+    /* children büyümüyor ,küçülmüyor , iki kolonlu layout olduğu için  ve 2 rem boşluk bu boşluk resim ile yazı arasında değil şu an en sağda toplanmı vaziyette dolayısı ile yukarıda about centera bir üst parenta gidip justify content sapce between yapıyor garanti olsun diye de wrapliyor */
+
+    margin-bottom: 0;
+    /* bu margine gerek yok ekran büyüdüğünde ve column layoutumuz olduğu için büyük ekranda */
+    align-self: center;
+    /* child'i centera çekiyor böylece büyük ekranda resimin yanındaki yazı resimin sağ ortasında iniyor  eskiden kafa kafaya yan yana idi */
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  /* image targetlayamadığı için onun için özel oluşturlmuş article parentta işlem yapacak yapılan şey ise resimin arkasına pencere çekiyor ekran büyükken */
+  .about-img::before {
+    content: "";
+    position: absolute;
+    border: 0.5rem solid var(--clr-primary-5);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    top: -1.5rem;
+    left: -1.5rem;
+    z-index: -1;
+  }
+  .about-img {
+    position: relative;
+  }
+  /* stacking order için bunu relative yapıyor */
+  .about-photo {
+    position: relative;
+  }
+}
+/*
+=============== 
+Services
+===============
+*/
+.services {
+  background: var(--clr-primary-10);
+}
+.service {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.service-icon {
+  background: var(--clr-primary-5);
+  color: var(--clr-primary-1);
+  padding: 0.5rem;
+  /* default olarak şu anda  inline biz bunu block yapıyoruz marginlere saygı duysun diye */
+  display: inline-block;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+.service-text {
+  max-width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* şimdi column layouta geçiyor */
+@media screen and (min-width: 576px) {
+  .services-center {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .service {
+    /* parantez içi tut - işareti ile 1 remi aralıklı yoksa hata veriyor*/
+    flex: 0 0 calc(50% - 1rem);
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  /* 3 column layout */
+
+  .service {
+    flex: 0 0 calc(33.333% - 1rem);
+  }
+}
+/* ekran büyüdükçe yazı ile ikonu yan yana yapmak istiyor yeni bir media query ye bir iki dokunuş  */
+@media screen and (min-width: 1170px) {
+  .service {
+    display: flex;
+    text-align: left;
+    /* diğer özellikleri koymuyor çünkü zaten yukarıda 576px den başlayan media query bunu içeriyor. */
+  }
+  /* yukardaki işlemi yapınca flexbox displayı ile  default özelliği olan stretch iconları etkiliyor bu yüzden bunu düzeltecek  */
+  .service-icon {
+    align-self: start;
+  }
+  .service-info {
+    padding-left: 1rem;
+  }
+  .service-title {
+    margin-bottom: 0.5rem;
+  }
+}
+/*
+=============== 
+Featured Tours
+===============
+*/
+/* ekstra çalışma farklı stil  başlangıç */
+.tour-title {
+  /* bu class h4 ve p'yi yan yana getirip sardığımız div */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+/* ve bu karta özel yani filli karta özel yazı ve title değişikliği yapıyoruz */
+.tour-title p,
+.tour-title h4 {
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+.tour-title p {
+  color: var(--clr-grey-7);
+}
+/* ekstra çalışma farklı stil  bitiş */
+
+.tour-card {
+  transition: var(--transition);
+  background: var(--clr-grey-10);
+  box-shadow: var(--light-shadow);
+  margin-bottom: 2rem;
+}
+.tour-card:hover {
+  box-shadow: var(--dark-shadow);
+  transform: scale(1.02);
+}
+.tour-img-container {
+  /* çünkü parentta relative yapıp childe absolute bir şekilde tour date yazısını pencere sağ alta yerleştiriyor */
+  position: relative;
+}
+.tour-date {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: var(--clr-primary-8);
+  margin-bottom: 0;
+  /* yazıyı tamamen yapıştırdı resimin altına */
+  color: var(--clr-primary-1);
+  text-transform: capitalize;
+  padding: 0.25rem 0.5rem;
+}
+.tour-img {
+  height: 15rem;
+  /* yüksekliği 15rem yapınca resimler biraz bozulduğu için hemen object fit yapıyoruz */
+  object-fit: cover;
+}
+.tour-info {
+  padding: 1.25rem 1.5rem;
+}
+.tour-footer {
+  /* harita işareti yanındaki ülke ismi gün ve fiyat alt altaydı o yan yana oluyor */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+/* şimdi detay çalışyor   */
+.tour-footer p {
+  line-height: 0;
+  margin-bottom: 0;
+  text-transform: capitalize;
+  color: var(--clr-primary-5);
+}
+.tour-btn {
+  /* hala buttonun text,, diplay button değil o yuzden text laign yapabiliryorum */
+  text-align: center;
+}
+/* colum layouta geçiyoruz  */
+@media screen and (min-width: 768px) {
+  .featured-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .tour-card {
+    flex: 0 0 calc(50% - 2rem);
+  }
+}
+@media screen and (min-width: 1170px) {
+  .tour-card {
+    flex: 0 0 calc(33.333% - 2rem);
+  }
+}
+
+/*
+=============== 
+Contact
+===============
+*/
+.contact {
+  background: var(--clr-primary-8);
+}
+.contact-title {
+  color: var(--clr-white);
+}
+.contact-title p {
+  color: var(--clr-primary-8);
+}
+.contact-form {
+  display: flex;
+  max-width: 28rem;
+}
+.form-control {
+  flex: 1 1 auto;
+  color: var(--clr-grey-5);
+}
+.form-control,
+.btn-submit {
+  /* beraber ele alıyor çünkü hareketleri beraber */
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
+  letter-spacing: var(--spacing);
+  background: var(--clr-white);
+  text-transform: capitalize;
+  border: transparent;
+}
+.form-control::placeholder {
+  color: inherit;
+  /* form controlde hangi renk varsa onu alsın */
+}
+.btn-submit {
+  font-family: var(--ff-primary);
+  margin-left: 0.5rem;
+  background: var(--clr-primary-8);
+  color: var(--clr-primary-1);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-submit:hover {
+  background: var(--clr-primary-1);
+  color: var(--clr-primary-5);
+}
+@media screen and (min-width: 992px) {
+  /* 2colum layout */
+  .contact-center {
+    display: flex;
+    /* bunun diyince ama email ve buton strech oluyor childrenlar o yuzden aşağıdaki emiri yani align self flext start yapıyoruz contact form içine */
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .contact-form {
+    align-self: flex-start;
+    /* şimdide ufak gözüküyor biraz büyümesi lazım */
+    flex: 1 1 auto;
+    /* buna  rağmen hala küçük çünkü önceki değerde bir max width 28 rem koymuştuk  o yuzden şimdi bir max width koyuyoruz*/
+    max-width: 100%;
+    padding-left: 2rem;
+  }
+}
+
+/*
+=============== 
+Gallery
+===============
+*/
+.gallery-img-container {
+  /* merceği resmin ortasına absolut koymak istediği için parenta position relative */
+  position: relative;
+  /* arka fona resım koyacak ki resim opacity olunca o efekt oluşsun */
+  background: var(--clr-primary-5);
+}
+.gallery-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
+  transform: translate(-50%, -50%);
+  color: var(--clr-white);
+  opacity: 0;
+  cursor: pointer;
+  transition: var(--transition);
+}
+/* değişiklikleri burada yapsakta hover için resim containerini kullanıyoruz */
+.gallery-img {
+  height: 17rem;
+  /* bu hareketimiz resmi bozduğu için object fit şart */
+  object-fit: cover;
+  transition: var(--transition);
+}
+.gallery-img-container:hover .gallery-img {
+  opacity: 0.5;
+}
+.gallery-img-container:hover .gallery-icon {
+  opacity: 1;
+}
+
+/* colum layouta geçerek resim boyutlarını düzenleyecek dikkat et section içinde seçmiyor dolayısıyla tüm ekrana resimler genişlemiş vaziyette böyle kullanıyor çerçcevesiz */
+@media screen and (min-width: 768px) {
+  /* iki kolum layoutdan başlıyor */
+  .gallery-center {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .gallery-img-container {
+    /* child elementte olduğumuz için flexi kullanabiliriz yukarıda  oluşturudk */
+    flex: 0 0 50%;
+  }
+}
+@media screen and (min-width: 992px) {
+  /* yukarıdaki değerler zaten var sadece galleyideki resim oranını  4 resim için ayarla yeter */
+  .gallery-img-container {
+    flex: 0 0 25%;
+  }
+}
+
+/*
+=============== 
+Footer
+===============
+*/
+.footer {
+  background: var(--clr-grey-1);
+  text-align: center;
+  /* zaten globals dan padding alıyor bir nebze o yuzden top bottom yapmadı */
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.footer-links,
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.footer-link {
+  color: var(--clr-white);
+  text-transform: capitalize;
+  font-size: 1rem;
+  margin-right: 1rem;
+  letter-spacing: var(--spacing);
+  transition: var(--transition);
+  /* transitionu buraya yerleştirecek ki hoverda bu emir kullanılsın */
+}
+
+.footer-link:hover {
+  color: var(--clr-primary-5);
+}
+.footer-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  color: var(--clr-white);
+  transition: var(--transition);
+}
+.footer-icon:hover {
+  color: var(--clr-primary-5);
+}
+
+.copyright {
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  color: var(--clr-white);
+}
